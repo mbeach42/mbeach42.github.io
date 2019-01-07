@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+{% include topcomment.html %}
+<!--<link rel="stylesheet" href="/assets/css/academicons.css">-->
+
+<html lang="{{ site.lang }}">
+
+{% include head.html %}
+
+<body class="landing">
+
+  <!-- Page Wrapper -->
+  <div id="page-wrapper">
+
+    {% include header.html %}
+
+    <!-- Banner -->
+    <section id="banner">
+      <div class="inner">
+              <!--<img class="img-circle" src='/images/me.png' style='float: center;' />-->
+        <font size="+3">
+          <h2>{{ site.title }}</h2>
+        </font>
+        <font size="+2">
+          <p>Quantum Physics + Machine Learning
+          </p>
+          <h2>
+            <p>
+              <font size="+0">
+                <!--PhD Candidate: -->
+                <span>
+                  <br>PhD Candidate</br>
+                </span>
+                <span>
+                  <strong style="">Perimeter Institute | </strong>
+                  <strong style="">University of Waterloo</strong>
+                </span>
+              </font>
+            </p>
+        </font>
+        <font size="+5">
+          <div class="header-icons">
+            <a aria-label="Google Scholar" href="https://scholar.google.ca/citations?user=wrxQsIsAAAAJ&hl=en# "><i
+                class="ai ai-google-scholar-square ai-1x" aria-hidden="true"></i></a>
+            <a aria-label="LinkedIn" href="https://linkedin.com/in/matthew-beach-33725354"><i class="fa fa-linkedin"
+                aria-hidden="true"></i></a>
+            <a aria-label="Email" href="mailto:{{matthew.beach@uwaterloo.ca}}"><i class="icon fa fa-envelope"></i></a>
+            <a aria-label="Twitter" href="https://twitter.com/{{ site.twitter_username }}"><i class="icon fa fa-twitter"
+                aria-hidden="true"></i></a>
+            <a aria-label="Github" href="https://github.com/{{ site.github_username }}"><i class="icon fa fa-github-alt"
+                aria-hidden="true"></i></a>
+          </div>
+          </h2>
+        </font>
+      </div>{%
+      if site.greeting %}
+      <a href="#greeting" class="more scrolly">Continue</a>{%
+      else %}
+      <a href="#landing_pages" class="more scrolly">Continue</a>{%
+      endif %}
+    </section>
+    {%
+    if site.greeting %}
+
+    <!-- One -->
+    <section id="greeting" class="wrapper style1 special">
+      <div class="inner">
+        <header class="major">
+          <font size="+1">
+            <!--<h2>{% if site.greeting.title %}{{ site.greeting.title }}{% else %}{{ site.title }}{% endif %}</h2>-->
+            <h3 style="margin-bottom: 0.2em;margin-top: 0.2em;"> About Me</h3>
+            <p>
+              <span>
+                <strong style="">Condensed Matter Physics | </strong>
+                <strong style="">Machine Learning |</strong>
+                <strong style="">Quantum Information</strong>
+              </span>
+            </p>
+            <!--<div id='container'>-->
+              <!--<img class="img-circle" src='/images/me.png' style='float: center;' />-->
+              <!--<br>-->
+              <!--<br>-->
+              <font size="+1">
+                <!--<div style="padding-left: 250px; padding-right: 100px;">-->
+                  <p>I'm a researcher working on using machine learning to solve long-standing problems in quantum
+                    condensed matter physics. </p>
+                  <p>In my spare time, I enjoy playing racquet sports, performing music, and rock climbing.
+                  <!--</p>-->
+              </font>
+            <!--</div>-->
+      </div>
+      </font>
+
+
+
+      </header>
+      <!-- <ul class="icons major">{%
+              for socloc in site.social limit:3 %}{%
+                if socloc[1] %}{%
+                  if socloc[0] == 'email' %}
+                <li><a target="_blank" href="{%
+                    if socloc[1] contains '@' %}mailto:{{ socloc[1] }}{%
+                    else %}{{ socloc[1] }}{%
+                    endif %}" class="icon fa-envelope major style1"
+                       ><span class="label">E-mail</span></a></li>{%
+                  else %}
+                <li><a target="_blank" href="{{ socloc[1] }}" class="icon fa-{{ socloc[0] }} major style{% cycle 1, 2, 3 %}"
+                       ><span class="label">{{ socloc[0] }}</span></a></li>{%
+                  endif %}{%
+                endif %}{%
+              endfor %}
+              </ul> -->
+  </div>
+  </section>{%
+  endif %}
+
+  <!-- Two -->
+  <section id="landing_pages" class="wrapper alt style2">{%
+    assign sorted_pages = site.pages | sort:"id" %}{%
+    for my_page in sorted_pages %}{%
+    if my_page.title %}{%
+    unless my_page.options contains 'nolanding' %}
+    <!--<section class="spotlight">-->
+    <!--<div class="image">-->
+    <!--<a href="{{ my_page.url | prepend:site.baseurl }}">-->
+    <!--<img src="{{ site.baseurl }}/images/{% if my_page.image %}{{ my_page.image }}{% else %}banner.jpg{% endif %}"-->
+    <!--alt="{% if my_page.image_alt %}{{ my_page.image_alt }}{% else %}Image for {{ my_page.title | escape }}{% endif %}" />-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--<div class="content-wrap">-->
+    <!--<a href="{{ my_page.url | prepend:site.baseurl }}">-->
+    <!--<div class="content">-->
+    <!--<h2>{{ my_page.title }}</h2>-->
+    <!--<p>{{ my_page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}</p>-->
+    <!--</div>-->
+    <!--</a></div>-->
+  </section>{%
+  endunless %}{%
+  endif %}{%
+  endfor %}
+  </section>
+
+  <!-- Three -->{%
+  if site.tags.featured %}
+  <section id="landing_features" class="wrapper style3 special">
+    <div class="inner">
+      <header class="major">
+        <h2>{{ site.features-title }}</h2>
+        <!-- <p>Blog posts with decent content</p> -->
+      </header>
+      <ul class="features">{%
+        for my_post in site.posts %}{%
+        if my_post.tags contains 'featured' %}{%
+        assign i = i | plus:1 %}
+        <li class="icon fa-{% if my_post.icon %}{{ my_post.icon }}{% else %}heart-o{% endif %}">
+          <!-- featured:{{ i }} -->
+          <a href="{{ my_post.url | prepend:site.baseurl }}">
+            <div class="container">
+              <h3>{{ my_post.title }}</h3>
+              <p>{{ my_post.data}}<br />{{ my_post.excerpt | strip_html | truncatewords: 16 }}</p>
+            </div>
+          </a>
+        </li>{%
+        if i == 8 %}{%
+        break %}{%
+        endif %}{%
+        endif %}{%
+        endfor %}
+      </ul>
+    </div>
+  </section>{%
+  endif %}
+
+  <!-- CTA -->
+  <section id="cta" class="wrapper style4">
+    <div class="inner">
+      <header>
+        <h2>{{ site.closing-head }}</h2>
+        <p>{{ site.closing-para }}</p>
+      </header>
+      <ul class="actions vertical">
+        <!-- <li><a href="#" class="button fit special">Activate</a></li> -->
+        <li><a href="{{ '/contact/' | prepend: site.baseurl }}" class="button fit special">Contact</a></li>
+      </ul>
+    </div>
+  </section>
+
+  {% include footer.html %}
+
+  {% include scripts.html %}
+
+  </div>
+
+</body>
+
+</html>
