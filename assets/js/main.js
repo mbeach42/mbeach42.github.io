@@ -55,7 +55,7 @@
 			.append('<a href="#menu" class="close"></a>')
 			.appendTo($body)
 			.panel({
-				delay: 500,
+				delay: 50,
 				hideOnClick: true,
 				hideOnSwipe: true,
 				resetScroll: true,
